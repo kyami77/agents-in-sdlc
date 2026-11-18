@@ -1,8 +1,9 @@
 ---
 title: "练习 1 - 安装 GitHub Copilot CLI"
+description: "在 Codespace 中安装并验证 Copilot CLI，熟悉环境并找到预置的筛选议题。"
 authors:
   - geektrainer
-lastUpdated: 2026-06-30
+lastUpdated: 2026-09-18
 ---
 
 [GitHub Copilot CLI][about-copilot-cli] 是一个功能强大的代理式编码助手，可在终端中运行，让开发者通过命令行探索代码库、生成代码、运行命令并与外部工具交互。它可以帮助分担任务、请求变更，并保持专注。第一步自然是安装这个工具，好在可以使用已经熟悉的工具来完成。
@@ -11,7 +12,8 @@ lastUpdated: 2026-06-30
 
 - 使用 npm 安装 GitHub Copilot CLI。
 - 使用 GitHub 账户完成验证。
-- 验证安装结果。
+- 信任工作坊存储库并尝试快速对话。
+- 通过内置 GitHub MCP 服务器查找筛选议题。
 
 ## 场景
 
@@ -35,7 +37,7 @@ lastUpdated: 2026-06-30
    node --version
    ```
 
-   应看到版本 22 或更高（例如 `v22.x.x`）。
+   应看到版本 24 或更高。
 
 2. 使用 npm 在 codespace 中全局安装 Copilot CLI：
 
@@ -74,33 +76,62 @@ lastUpdated: 2026-06-30
 > [!NOTE]
 > 在 codespace 中，可能已经通过 GitHub 会话完成验证。如果 Copilot CLI 启动时没有提示验证，就表示可以直接使用。
 
-## 信任目录并确认一切正常
+## 信任工作坊存储库
 
-首次进入 Copilot CLI 提示符后，先信任这个工作坊存储库，并确认 Copilot CLI 已正确安装并连接成功。
+Copilot CLI 会显示以下提示：
 
-1. 当 Copilot CLI 要求确认是否信任此文件夹中的文件时，会看到三个选项：
-   - **Yes, proceed**：仅信任当前会话
-   - **Yes, and remember this folder for future sessions**：永久信任
-   - **No, exit (Esc)**：不允许访问文件
-2. 对于本工作坊，请选择 **Yes, and remember this folder for future sessions**，因为后续会持续在这个存储库中工作。
-3. 向 Copilot 提一个简单问题，确认它运行正常：
+```plaintext
+Copilot can read files in this folder and, with your permission, edit them or run code and shell commands. It will remember your permissions for the rest of this session.
 
+Do you trust the files in this folder?
+```
+
+确认显示的路径属于 Tailspin Toys 存储库，然后选择 **Yes, and remember this folder for future sessions**。
+
+## 熟悉 Copilot CLI
+
+普通 shell 提示符中的命令会直接在 Codespace 中运行。启动 Copilot CLI 后，自然语言会发送给智能体，斜杠命令则用于控制对话。
+
+1. 输入 `/model`，使用方向键选择 **Auto**，按 <kbd>Enter</kbd>，然后再次按 <kbd>Enter</kbd> 确认。
+2. 输入 `/help` 查看当前安装版本中可用的命令，然后按 <kbd>Esc</kbd> 关闭帮助界面。
+3. 提出一个简单问题，确认一切正常：
+
+   ```plaintext
+   What are the key files in this project?
    ```
-   What files are in this project?
+
+4. 阅读回复，注意 Copilot 会先探索存储库再作答。
+5. 输入 `/mcp list`，确认内置 GitHub MCP 服务器可用。
+6. 使用以下提示让 Copilot 查找筛选议题：
+
+   ```plaintext
+   Using GitHub MCP, find the issue in this repository titled "Allow users to filter games by category and publisher." Give me its URL and a short summary. Don't change anything.
    ```
 
-4. Copilot 应该会探索存储库，并给出项目结构摘要。
-5. 试用 `/help` 命令查看可用的斜杠命令：
+7. 打开 URL 并阅读议题。完成快速首次更改后会继续使用它。
 
-   ```
-   /help
+> [!TIP]
+> 普通 Copilot CLI 会话会在终端当前检出的分支上工作，不会自动创建工作树。每次更改前都要创建功能分支。
+
+## 使用工作坊快捷方式
+
+Copilot CLI 通常会在使用尚未获得权限的工具前征求批准。此工作坊会在 Codespace 中使用 `--yolo` 重新启动 CLI，移除这些批准提示，让你专注于练习。
+
+> [!CAUTION]
+> `--yolo` 会启用完整自动权限（`--allow-all-tools`、`--allow-all-paths` 和 `--allow-all-urls`）。只能在 Codespace 或 VM 等隔离环境中使用，绝不要将其设为日常开发的默认别名。详情请参阅[允许和拒绝工具使用][allow-all-warning]。
+
+`--enable-all-github-mcp-tools` 会启用后续课程用于处理议题和拉取请求的 GitHub MCP 读写工具。Codespace 限制了对本地计算机的访问，但经身份验证的 GitHub 资源仍是真实资源。发布或合并前请审查更改。
+
+1. 使用 `/exit` 退出 Copilot CLI。
+2. 从存储库根目录重新启动：
+
+   ```bash
+   copilot --yolo --enable-all-github-mcp-tools
    ```
 
-6. 在终端中输入以下命令退出 Copilot CLI。后续练习还会回到 Copilot CLI。
+3. 再提出一个关于项目的简单问题，确认会话正常，然后使用 `/exit` 退出。
 
-   ```
-   exit
-   ```
+Copilot 会自动保存对话。之后更新指令或添加智能体时，会使用 `copilot --resume` 返回同一功能对话和分支。
 
 ## 总结和后续步骤
 
@@ -108,22 +139,23 @@ lastUpdated: 2026-06-30
 
 - 使用 npm 安装 Copilot CLI。
 - 使用 GitHub 账户完成验证。
-- 信任一个目录，以便 Copilot CLI 可以处理其中内容。
-- 确认安装运行正常。
+- 信任工作坊存储库并尝试了快速对话。
+- 通过内置 GitHub MCP 服务器找到了筛选议题。
 
-现在 Copilot CLI 已安装完成，接下来为 Copilot 提供一些项目上下文。继续前往[练习 2 - 通过 CLI 使用自定义说明][next-lesson]。
+接下来开始[第一项聚焦更改][next-lesson]，使用 Copilot CLI 在游戏卡片上显示星级评分。
 
 ## 资源
 
 - [安装 GitHub Copilot CLI][install-copilot-cli]
-- [关于 Copilot CLI][about-copilot-cli]
-- [使用 Copilot CLI][using-copilot-cli]
+- [关于 GitHub Copilot CLI][about-copilot-cli]
+- [Copilot CLI 命令参考][cli-reference]
 
 [previous-lesson]: ../0-prerequisites/
-[next-lesson]: ../2-custom-instructions/
-[install-copilot-cli]: https://docs.github.com/copilot/how-tos/set-up/install-copilot-cli
+[next-lesson]: ../2-add-star-rating/
+[install-copilot-cli]: https://docs.github.com/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli
 [install-npm]: https://docs.github.com/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli#installing-with-npm-all-platforms
 [install-winget]: https://docs.github.com/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli#installing-with-winget-windows
 [install-homebrew]: https://docs.github.com/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli#installing-with-homebrew-macos-and-linux
 [about-copilot-cli]: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
-[using-copilot-cli]: https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli
+[cli-reference]: https://docs.github.com/copilot/reference/copilot-cli-reference/cli-command-reference
+[allow-all-warning]: https://docs.github.com/copilot/concepts/agents/about-copilot-cli#allowing-and-denying-tool-use

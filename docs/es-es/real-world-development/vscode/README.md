@@ -3,7 +3,7 @@ slug: es-es/real-world-development/vscode
 title: "VS Code"
 authors:
   - geektrainer
-lastUpdated: 2026-06-30
+lastUpdated: 2026-09-16
 ---
 
 **[GitHub Copilot Chat](https://code.visualstudio.com/docs/copilot/chat/copilot-chat)** en VS Code lleva GitHub Copilot al editor de código que ya utilizas. Al trabajar en Visual Studio Code (y GitHub Codespaces), dirigirás Copilot Chat en modo agente, conectarás herramientas externas mediante MCP y utilizarás agentes personalizados, todo ello sin salir del IDE, donde Copilot puede ver todos tus archivos, el terminal y los problemas.
@@ -14,7 +14,7 @@ Empezarás por añadir instrucciones personalizadas y observar cómo las sigue C
 
 | Ejercicio | Tema | Descripción |
 |----------|-------|-------------|
-| [0. Requisitos previos][ex0] | Configuración | Crea tu repositorio y tu codespace |
+| [0. Requisitos previos][ex0] | Configuración | Crea tu repositorio y codespace |
 | [1. Instrucciones personalizadas][ex1] | Contexto | Añade y verifica instrucciones personalizadas en VS Code |
 | [2. Modo agente][ex2] | Generación de código | Crea una funcionalidad de filtrado con el modo agente |
 | [3. MCP con Playwright][ex3] | Herramientas externas | Prueba la funcionalidad en un navegador con el servidor MCP de Playwright |

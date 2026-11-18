@@ -6,7 +6,7 @@ authors:
 lastUpdated: 2026-09-28
 ---
 
-根据学习目标和期望的深入程度选择研讨会。**入门体验**提供 GitHub Copilot 引导式介绍，**真实场景开发**则使用完整应用程序和团队待办事项，练习面向生产环境的工作流。
+根据学习目标和希望探索的深度选择研讨会。**入门体验**通过引导式练习介绍 GitHub Copilot；**真实场景开发**则使用完整应用和团队待办事项，练习面向生产环境的工作流。
 
 ## 入门体验
 
@@ -14,7 +14,7 @@ lastUpdated: 2026-09-28
 
 ### [GitHub Copilot app 导览][first-steps-app]
 
-从空文件夹创建 Space Quiz，将其发布到 GitHub，实现一个议题，完成 Copilot 审查，安排自动化任务，并探索 Canvas 工作流。
+从空文件夹创建 Space Quiz，将其发布到 GitHub，实现议题、完成 Copilot 审查、安排自动化任务，并探索 Canvas 工作流。
 
 ### [GitHub Copilot CLI 入门][first-steps-cli]
 
@@ -26,7 +26,7 @@ lastUpdated: 2026-09-28
 
 ## 真实场景开发
 
-使用 Tailspin Toys 应用程序及其待办事项，在真实的软件开发生命周期中练习 GitHub Copilot。选择工作环境，然后规划、构建、测试、审查并交付有意义的更改。
+使用 Tailspin Toys 应用及其待办事项，在真实的软件开发生命周期中练习 GitHub Copilot。选择工作环境，然后规划、构建、测试、审查并交付有意义的更改。
 
 ### [浏览真实场景开发研讨会][real-world-development]
 
@@ -40,4 +40,4 @@ lastUpdated: 2026-09-28
 [first-steps-app]: first-steps/copilot-app/
 [first-steps-cli]: first-steps/copilot-cli/
 [first-steps-vscode]: first-steps/vscode/
-[real-world-development]: ../real-world-development/
+[real-world-development]: real-world-development/

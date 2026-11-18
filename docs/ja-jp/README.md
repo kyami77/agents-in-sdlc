@@ -18,11 +18,11 @@ lastUpdated: 2026-09-28
 
 ### [GitHub Copilot CLI のはじめの一歩][first-steps-cli]
 
-同じ Space Quiz をターミナルから作成し、差分のレビュー、worktree での並列セッション、編集前の計画、シェルを離れずに行うプル リクエストの作成、マージ、委任まで進めます。
+同じ Space Quiz をターミナルから作成し、差分のレビュー、worktree での並列セッション、編集前の計画、シェルを離れずに行うプルリクエストの作成、マージ、委任まで進めます。
 
 ### [Visual Studio Code のはじめの一歩][first-steps-vscode]
 
-VS Code で Space Quiz を作成し、統合ブラウザーでのテスト、ソース管理での公開、GitHub ツールを使った Issue とプル リクエストの操作、クラウド セッションへの委任まで進めます。
+VS Code で Space Quiz を作成し、統合ブラウザーでのテスト、ソース管理での公開、GitHub ツールを使った Issue とプルリクエストの操作、クラウドセッションへの委任まで進めます。
 
 ## 実践的な開発
 

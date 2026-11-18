@@ -7,79 +7,80 @@ next: false
 ---
 
 | [← 前のレッスン: エージェントの監視と管理][previous-lesson] |
-| :-- |
+|:--|
 
 ## 作業をレビューする
 
-このラボでは、ユーザー体験を改善するいくつかのタスクに GitHub Copilot と取り組んできました。エージェントモードでクライアントとサーバーの両方にフィルターを追加し、Playwright MCP サーバーでその作業をブラウザーから手動でテストしました。その後、カスタムエージェントを使って、高コントラストモードとライトモードの切り替えというアクセシビリティ機能を実装し、進行中のセッションを方向付けして作業を広げました。次は、そのローカルの作業を公開し、チームと同じ方法でレビューします。
+このラボでは、ユーザー体験を改善するいくつかのタスクに GitHub Copilot と取り組んできました。agent mode で client と server にまたがるフィルター機能を追加し、Playwright MCP server を使って browser で手動テストし、さらに custom agent で accessibility 機能（high-contrast と light-mode の toggle）を実装しました。作業中の session に指示を追加し、変更を広げる方法も学びました。次はローカルの変更を公開し、チームと同じようにレビューします。
 
 ### シナリオ
 
-生成 AI が加わっても、ソフトウェア設計と DevOps の基本は変わりません。Copilot が生成するものには、引き続きしっかりとしたレビューのサイクルが必要です。このことを踏まえて、codespace からアクセシビリティの変更をプッシュし、プルリクエストを作成して、チームのほかのメンバーに参加してもらう前に差分を確認しましょう。
+生成 AI を導入しても、software design と DevOps の基本は変わりません。Copilot が作成したものには、引き続き実際の review process が必要です。Codespace から accessibility の変更を push し、pull request を開いて、ほかのチームメンバーに共有する前に diff を確認しましょう。
+
 ## アクセシビリティ機能を公開する
 
-[演習 4][exercise-4]と[演習 5][exercise-5]でアクセシビリティ用カスタムエージェントと実装した、高コントラストモードとライトモードの切り替えは、コミット済みの変更として codespace にあります。チームのほかのメンバーがレビューできるように、ブランチにプッシュしてプルリクエストを作成します。
+[演習 4][exercise-4] と [演習 5][exercise-5] で accessibility custom agent を使って実装した high-contrast と light-mode の toggle は、Codespace に commit 済みの変更としてあります。branch に push して pull request を開き、チームにレビューしてもらいましょう。
 
-1. codespace に戻ります。
-2. VS Code の **Source Control** ビューを開きます。
-3. アクセシビリティの変更がコミット済みであることを確認します。演習 5 の未コミットの変更がある場合は、今ステージして、`Add high-contrast and light-mode toggles` などの内容が分かるメッセージでコミットします。
-4. **Publish Branch** を選択してブランチを公開します (または **...** メニュー → **Push** を使います)。
-5. VS Code から新しいブランチを github.com で開くように促されます。そのプロンプトを受け入れるか、手動でリポジトリに移動し、ブランチのバナーで **Compare & pull request** を選択します。
-6. 分かりやすいタイトル (例: `Add high-contrast and light-mode toggles`) と、何をなぜ行ったかをまとめた短い説明を設定します。
+1. Codespace に戻ります。
+2. VS Code で **Source Control** view を開きます。
+3. accessibility の変更が commit 済みであることを確認します。演習 5 の未 commit 変更がある場合は、ここで stage し、`Add high-contrast and light-mode toggles` などの内容が分かるメッセージで commit します。
+4. **Publish Branch** を選択して branch を公開します（または **...** menu → **Push** を使います）。
+5. VS Code から github.com で新しい branch を開くように案内されたら、その prompt を受け入れます。または、repository に移動し、branch banner で **Compare & pull request** を選択します。
+6. 分かりやすい title（例: `Add high-contrast and light-mode toggles`）と、実施した内容と理由をまとめた簡潔な説明を設定します。
 7. **Create pull request** を選択します。
-8. PR が作成されたら、**Files changed** タブを選択し、作業全体をレビューします。特に次の点に注意します。
-   - モードを切り替えるためのトグル UI コンポーネント。
-   - ユーザー設定を永続化するためのローカルストレージの使用。
-   - 高コントラストモードとライトモード用の CSS またはスタイルの変更。
-   - アクセシビリティ属性 (ARIA ラベル、キーボードナビゲーションなど)。
-   - モード切り替えを管理する JavaScript/TypeScript コード。
+8. PR を開いたら、**Files changed** tab を選択し、作業全体を確認します。特に次の点を確認してください。
+   - mode を切り替える UI component。
+   - 利用者の設定を保持する local storage の使用。
+   - high-contrast と light mode の CSS または style の変更。
+   - accessibility attribute（ARIA label、keyboard navigation など）。
+   - mode 切り替えを管理する JavaScript/TypeScript code。
+9. **Conversation** tab に戻ります。
+10. workflow の承認待ちがある場合は、**Approve and run workflows** を選択します。
 
-9. **Conversation** タブに戻ります。
-10. 承認待ちのワークフローがある場合は、**Approve and run workflows** を選択します。
+    ![Approve and run workflows](../../../_images/shared-approve-workflows.png)
 
-    ![ワークフローの承認と実行を行う Approve and run workflows](../../../_images/shared-approve-workflows.png)
-11. ワークフローの完了を待ちます。問題がなければ、成功したことを確認できるはずです。
+11. workflow が完了するまで待ちます。問題がなければ、すべて成功します。
 
 > [!TIP]
-> アクセシビリティの作業について別の意見が必要ですか。PR コメントで `@copilot` をタグ付けし、「この PR にほかの WCAG の問題がないかレビューしてください」や「キーボードナビゲーションの改善を提案してください」などと依頼します。Copilot は、そのコメントに対応する新しいセッションを開始します。
+> accessibility の変更について別の意見が必要ですか。PR comment で `@copilot` にタグを付け、「この PR に追加の WCAG の問題がないかレビューしてください」や「keyboard navigation の改善を提案してください」などと依頼します。Copilot は comment に対応する新しい session を開始します。
 
 ## 省略可能な演習 - ローカルでさらに試す
 
-IDE 内でエージェントと反復的に作業することもスキルの 1 つであり、身に付けるには繰り返しが欠かせません。VS Code から実行できる追加セッションのアイデアを紹介します。
+IDE で agent と反復的に作業することもスキルの 1 つです。身につけるには繰り返しが必要です。VS Code から始められる追加 session の例を紹介します。
 
-- ゲーム詳細ページに、支援に関心のある人向けのフォームを追加します。
-- ゲーム一覧ページにページネーションを実装します。
-- `src/lib/` のデータアクセスヘルパーに入力検証とエラー処理を追加します。
-- アクセシビリティエージェントの対象範囲を広げます。たとえば、サイト全体のキーボードフォーカスの順序を監査します。
+- ゲーム詳細ページに支援者向けの関心フォームを追加します。
+- ゲーム一覧ページに pagination を実装します。
+- `src/lib/` の data-access helper に入力検証と error handling を追加します。
+- accessibility agent の対象範囲を広げ、たとえばサイト全体の keyboard focus 順序を監査します。
 
 ## まとめ
 
-おめでとうございます。VS Code コースを完了しました。このラボでは、次のことに取り組みました。
+おめでとうございます。VS Code harness を完了しました。このラボでは、次のことを行いました。
 
-- **Playwright MCP を使って機能を手動でテストしました。** Playwright MCP サーバーを追加し、プルリクエストを作成する前に Copilot にブラウザーを操作させてフィルター機能を検証しました。
-- **エージェントモードでスタック全体にまたがる変更を連携して進めました。** 1 回のセッションで、クライアント、サーバー、テストにまたがるフィルター機能を追加しました。
-- **カスタムエージェントを使いました。** エージェント選択メニューからアクセシビリティに特化したカスタムエージェントを選び、リポジトリに高コントラストモードを実装する様子を確認しました。
-- **エージェントのセッションを管理し、方向付けしました。** 提案された変更をインラインでレビューし、必要なものを受け入れ、ライトモードの追加依頼でセッションを広げました。
-- **プルリクエストで一連の作業を締めくくりました。** ローカルの作業を公開し、チームと同じ方法で全体をレビューしました。
+- **Playwright MCP で機能を手動テストしました。** Playwright MCP server を追加し、PR を開く前に Copilot に browser を操作させてフィルタリング機能を検証しました。
+- **agent mode で stack 全体にわたる変更を調整しました。** 1 つの session で client、server、test にまたがるフィルタリング機能を追加しました。
+- **custom agent を使いました。** agent picker から accessibility に特化した custom agent を選び、repository に対して high-contrast mode を実装する様子を確認しました。
+- **agent session を管理し、方向付けしました。** 提案された変更を inline で確認して必要なものを採用し、light-mode の follow-up で session を拡張しました。
+- **pull request で一連の作業を完了しました。** ローカルの変更を公開し、チームと同じように全体をレビューしました。
 
 ## 振り返りと次のステップ
 
-これで必須の VS Code コースは終了です。ここでワークショップを完了して構いません。
+これで必須の VS Code harness は完了です。ワークショップはここで終了できます。
 
-Copilot のエージェント機能について視野を広げたい場合は、ほかのコースで、異なる操作環境から関連するシナリオに取り組めます。
+Copilot agent の機能についてさらに学ぶ場合は、ほかの harness で異なる surface から関連するシナリオに取り組めます。
 
-- 💻 **[CLI コース](../../cli/)** — Copilot CLI を使ってターミナルから同様の流れに取り組みます。プランモード、エージェントスキル、カスタムエージェント、`/share`、`/context`、`/delegate` などのスラッシュコマンドを扱います。
-- ☁️ **[クラウドエージェントコース](../../cloud/)** — クラウドエージェントへの Issue の割り当て、エージェントページでのセッションの監視、プルリクエストでの非同期の反復作業に重点を置きます。
+- 💻 **[CLI harness](../../cli/)** — terminal から 2 つの変更をレビューして公開します。Plan と Autopilot mode、skill、custom QA agent、Playwright MCP、Agent Merge、context を保った handoff を扱います。
+- ☁️ **[Cloud agent harness](../../cloud/)** — Issue を cloud agent に割り当て、agents page で session を監視し、pull request 上で非同期に反復することに重点を置きます。
 
-ここで始めた作業をさらに発展させることもできます。[awesome-copilot][awesome-copilot] には、自分のプロジェクトに応用できる指示ファイル、カスタムエージェント、スキルが豊富にあります。
+ここで始めた作業をさらに発展させることもできます。[awesome-copilot][awesome-copilot] には、自分の project に応用できる instruction file、custom agent、skill が多数あります。
 
-省略可能な拡張演習である[省略可能: Foundry を組み込む][exercise-7]では、VS Code と Microsoft Foundry Toolkit を使ってモデルを準備し、Backer Concierge をデプロイしてサイトに接続します。
+省略可能な拡張演習の[オプション: Foundry を組み込む][exercise-7]では、VS Code と Microsoft Foundry Toolkit を使ってモデルを準備し、Backer Concierge をデプロイしてサイトに接続します。
 
 ## リソース
 
 - [GitHub Copilot][github-copilot]
 - [VS Code の Copilot Chat][copilot-chat-vscode]
-- [エージェントモードの使用][agent-mode]
+- [Agent mode の使用][agent-mode]
 
 ---
 
